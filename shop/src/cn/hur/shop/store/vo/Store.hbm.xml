@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.hur.shop.store.vo.Store" table="store">
+		<id name="sid">
+			<generator class="native"/>
+		</id>
+		
+		<property name="sname"/>
+		<property name="sdesc"/>
+		<property name="slogo"/>
+		
+		<!-- 店铺与商品的关联 -->
+		<set name="products">
+			<key column="sid"/>
+			<one-to-many class="cn.hur.shop.product.vo.Product"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>

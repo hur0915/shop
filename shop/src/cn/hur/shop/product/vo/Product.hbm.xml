@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.hur.shop.product.vo.Product" table="product">
+		<id name="pid">
+			<generator class="native"/>
+		</id>
+		
+		<property name="pname"/>
+		<property name="price"/>
+		<property name="img"/>
+		<property name="preco"/>
+		<property name="pdesc"/>
+		<property name="is_reco"/>
+		<property name="is_hot"/>
+		<property name="date"/>
+		
+		<many-to-one name="categorySecond" column="csid" lazy="false" 
+			class="cn.hur.shop.categorysecond.vo.CategorySecond"/>
+		<many-to-one name="store" column="sid" lazy="false" 
+			class="cn.hur.shop.store.vo.Store"/>
+		
+		<!-- 商品与商品图片的关联 -->
+		<set name="pimages">
+			<key column="pid"/>
+			<one-to-many class="cn.hur.shop.pimage.vo.Pimage"/>
+		</set>
+		<!-- 商品与商品颜色的关联 -->
+		<set name="pcolors">
+			<key column="pid"/>
+			<one-to-many class="cn.hur.shop.pcolor.vo.Pcolor"/>
+		</set>
+		<!-- 商品与商品尺码的关联 -->
+		<set name="psizes">
+			<key column="pid"/>
+			<one-to-many class="cn.hur.shop.psize.vo.Psize"/>
+		</set>
+	</class>
+</hibernate-mapping>
